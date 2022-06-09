@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse 
 from store.models import Product, OrderItem
 
 # Create your views here.
 
 
 def hello(request):
-    # query_set = Product.objects.filter(id__in=OrderItem.objects.values('product_id').distinct()).order_by('title')
+    query_set = Product.objects.select_related('collection').all()
 
     return render(request, 'hello.html', {
         'name': 'Sulaiman Hosain',
